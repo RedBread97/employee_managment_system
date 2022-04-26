@@ -1,8 +1,8 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 require('dotenv').config();
-// const queryFunctions = require('./queryFunctions')
-// const { allDepts } = require('./queryFunctions')
+const queryFunctions = require('./queryFunctions')
+const { allDepts, allRoles, allEmployees, addDepartment, addRole, addEmployee } = require('./queryFunctions')
 
 const opt = ["ALL_DEPT", "ALL_ROLES"];
 function startApp() {
@@ -18,7 +18,7 @@ function startApp() {
             console.log(ans);
             switch (ans.userview) {
                 case opt[0]:
-                    // queryFunctions.allDepts();
+                    queryFunctions.allDepts();
                     allDepts();
                     break;
 
