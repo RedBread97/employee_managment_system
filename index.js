@@ -1,19 +1,9 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 require('dotenv').config();
-const queryFunctions = require('./queryFunctions')
-const { allDepts } = require('./queryFunctions')
+// const queryFunctions = require('./queryFunctions')
+// const { allDepts } = require('./queryFunctions')
 
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        // MySQL username,
-        user: 'root',
-        password: 'root',
-        database: 'emp_tracker_db'
-    },
-    console.log(`Connected to the database.`)
-);
 const opt = ["ALL_DEPT", "ALL_ROLES"];
 function startApp() {
     inquirer.prompt([
