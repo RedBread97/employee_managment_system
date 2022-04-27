@@ -1,16 +1,16 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 require('dotenv').config();
-const queryFunctions = require('./queryFunctions')
-const { allDepts, allRoles, allEmployees, addDepartment, addRole, addEmployee } = require('./queryFunctions')
+const queryFunctions = require('./queryFunctions');
+const { allDepts, allRoles, allEmployees, addDepartment, addRole, addEmployee,  } = require('./queryFunctions')
 
-const opt = ["ALL_DEPT", "ALL_ROLES"];
+const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee"];
 function startApp() {
     inquirer.prompt([
         {
             type: "list",
             name: "userview",
-            message: "What you want to see?",
+            message: "What would you like to do?",
             choices: opt
         }
     ])
@@ -26,15 +26,43 @@ function startApp() {
                     break;
             }
         })
+        .then((ans) => {
+            console.log(ans);
+            switch (ans.userview) {
+                case opt[1]:
+                    queryFunctions.allRoles();
+                    allRoles();
+                    break;
+
+                default:
+                    break;
+            }
+        })
+        .then((ans) => {
+            console.log(ans);
+            switch (ans.userview) {
+                case opt[2]:
+                    queryFunctions.allEmployees();
+                    allEmployees();
+                    break;
+
+                default:
+                    break;
+            }
+        })
+
 }
+
+inquirer.prompt([
+    {
+        type: "input",
+        
+    }
+
+])
 
 startApp();
 
-// function allDepts() {
-//     db.query('SELECT * FROM department', function (err, results) {
-//         console.log(results);
-//         startApp();
-//     });
-// }
+
 
 
