@@ -52,10 +52,12 @@ function startApp() {
         })
 
 }
-
+addDepartment()
 inquirer.prompt([
     {
         type: "input",
+        name:"add department",
+        massage: "What department would you like to add?"
         
     }
 
