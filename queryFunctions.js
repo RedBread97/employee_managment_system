@@ -1,92 +1,66 @@
 const db = require('./connection')
-function allDepts() {
+class DB {
+    constructor(db){
+        this.db = db
+    }
+allDepts() {
     db.query('SELECT * FROM department', function (err, results) {
         console.log(results);
         if (err) {
             console.log(err);
         } else {
-            console.log("successfully added")
+            console.log("success")
         }
         // startApp();
     });
 }
-function allRoles() {
+allRoles() {
     db.query('SELECT * FROM roles', function (err, results) {
         console.log(results);
         if (err) {
             console.log(err);
         } else {
-            console.log("successfully added")
+            console.log("success")
         }
     });
 }
 
-function allEmployees() {
+allEmployees() {
     db.allEmployees('SELECT * FROM employees', function (err, results) {
         console.log(results);
         if (err) {
             console.log(err);
         } else {
-            console.log("successfully added")
+            console.log("success")
         }
     });
 }
 
-function addDepartment(department_name) {
-    db.query(`INSERT INTO department (department_name) VALUES ('${department_name};')`, function (err, results) {
-        console.log(results);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("successfully added")
-        }
-    });
+addDepartment(department_name) {
+    return this.db.promise().query(`INSERT INTO department (department_name) VALUES ('${department_name};')` 
+    );
 }
 
-function addRole(title, salary, id) {
-    db.query(`INSERT INTO roles (title, salary, department_id) VALUES ('${title}', '${salary}', '${id}' ;')`, function (err, results) {
-        console.log(results);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("successfully added")
-        }
-    });
+addRole(title, salary, id) {
+    db.query(`INSERT INTO roles (title, salary, department_id) VALUES ('${title}', '${salary}', '${id}' ;')`
+    );
 }
 
-function addEmployee(first_name, last_name, role_id, manager_id) {
-    db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${first_name}', '${last_name}', '${role_id}', '${manager_id}' ;')`, function (err, results) {
-        console.log(results);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("successfully added")
-        }
-    });
+addEmployee(first_name, last_name, role_id, manager_id) {
+    db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${first_name}', '${last_name}', '${role_id}', '${manager_id}' ;')`
+    );
 }
 
-function updateEmployeeRole(role_id) {
-    db.query(`UPDATE employee (role_id) VALUES ('${role_id}')`, function (err, results) {
-        console.log(results);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("successfully updated")
-        }
-    });
+updateEmployeeRole(role_id) {
+    db.query(`UPDATE employee (role_id) VALUES ('${role_id}')`
+    );
 
 }
 
-function updateEmployeeManager(manager_id) {
-    db.query(`UPDATE employee (manager_id) VALUES ('${manager_id}')`, function (err, results) {
-        console.log(results);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("successfully updated")
-        }
-    });
+updateEmployeeManager(manager_id) {
+    db.query(`UPDATE employee (manager_id) VALUES ('${manager_id}')`
+    );
 
 }
-
-module.exports = { allDepts, allRoles, allEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager };
+};
+module.exports = new DB(db);

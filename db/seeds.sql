@@ -6,7 +6,7 @@ VALUES
   ('IT'),
   ('HR');
 
-  INSERT INTO roles (title, salary, department_id)
+  INSERT INTO roles (titles, salary, department_id)
 VALUES 
 ('CEO', 200000.00, 1),
 ('General Manager', 175000.00, 2),
@@ -22,7 +22,7 @@ VALUES
 INSERT INTO
   employee (first_name, last_name, role_id, manager_id)
 VALUES
-('Ned', 'Stark', 1, NULL),
+('Ned', 'Stark', 1, 1),
 ('Rob', 'Stark', 2, 1),
 ('Arya', 'Stark', 3, 2),
 ('John', 'Snow', 4, 3),
@@ -33,7 +33,7 @@ VALUES
 ('Kevin', 'James', 8, 4),
 ('Miles', 'Turner', 9, 5),
 ('William', 'Hogan', 9, 5),
-('Claire'), 'Smith', 10, 6),
+('Claire', 'Smith', 10, 6),
 ('Mathew', 'Carter', 10, 6);
 
 SELECT
