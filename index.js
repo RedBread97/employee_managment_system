@@ -2,9 +2,9 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 require('dotenv').config();
 const queryFunctions = require('./queryFunctions');
-const db = require('./queryFunctions')
+const queries = require('./queryFunctions')
 
-const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee"];
+const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee", "update role"];
 function startApp() {
     inquirer.prompt([
         {
@@ -18,24 +18,29 @@ function startApp() {
             console.log(ans);
             switch (ans.userview) {
                 case opt[0]:
-                    allDepts();
+                   queries.allDepts();
                     break;
                 case opt[1]:
-                    allRoles();
+                    queries.allRoles();
                     break;
                 case opt[2]:
-                    allEmployees();
+                    queries.allEmployees();
                     break;
                 case opt[3]:
-                    createDepartment()
+                    createDepartment();
+                    break;
                 case opt[4]:
-                    createRole()
+                    createRole();
+                    break;
                 case opt[5]:
-                    createEmployee()
+                    createEmployee();
+                    break;
                 case opt[6]:
-                    updateRole()
+                    updateRole();
+                    break;
                 case opt[7]:
-                    updateManager()
+                    updateManager();
+                    break;
 
 
                 default:
@@ -44,6 +49,8 @@ function startApp() {
         })
 
 }
+
+
 const createDepartment = () => {
     inquirer.prompt([
         {
@@ -55,7 +62,7 @@ const createDepartment = () => {
 
     ]).then(ans => {
         console.log(ans)
-        db.addDepartment(ans)
+        queries.addDepartment(ans.add_department)
             .then(() => console.log("successfully added"))
             .then(() => startApp())
     })
@@ -72,7 +79,24 @@ const createRole = () => {
 
     ]).then(ans => {
         console.log(ans)
-        db.createRole(ans)
+        queries.createRole(ans.add_role)
+            .then(() => console.log("successfully added"))
+            .then(() => startApp())
+    })
+};
+
+const createEmployee = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "add_employee",
+            massage: "What employee would you like to add?"
+
+        }
+
+    ]).then(ans => {
+        console.log(ans)
+        queries.addEmployee(ans.add_employee)
             .then(() => console.log("successfully added"))
             .then(() => startApp())
     })
@@ -89,7 +113,7 @@ const updateRole = () => {
 
     ]).then(ans => {
         console.log(ans)
-        db.updateEmployeeRole(ans)
+        queries.updateEmployeeRole(ans)
             .then(() => console.log("successfully updated"))
             .then(() => startApp())
     })
@@ -106,7 +130,7 @@ const updateManager = () => {
 
     ]).then(ans => {
         console.log(ans)
-        db.updateEmployeeManager(ans)
+        queries.updateEmployeeManager(ans)
             .then(() => console.log("successfully updated"))
             .then(() => startApp())
     })
