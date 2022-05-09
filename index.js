@@ -3,8 +3,14 @@ const inquirer = require('inquirer');
 require('dotenv').config();
 const queryFunctions = require('./queryFunctions');
 const queries = require('./queryFunctions')
+const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee", "update role", "update manager", "quit"];
+init()
+function init() {
+    startApp();
+console.log('working')
+}
 
-const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee", "update role"];
+
 function startApp() {
     inquirer.prompt([
         {
@@ -44,7 +50,8 @@ function startApp() {
 
 
                 default:
-                    break;
+                    console.log("working")
+                    quit();
             }
         })
 
@@ -141,11 +148,14 @@ const updateManager = () => {
             .then(() => startApp())
     })
 };
+function quit() {
+    console.log("goodbye")
+    process.exit()
+}
 
 
 
-
-startApp();
+// init();
 
 
 
