@@ -63,7 +63,7 @@ const createDepartment = () => {
         {
             type: "input",
             name: "add_department",
-            message: "What department would you like to add?"
+            massage: "What department would you like to add?"
 
         }
 
@@ -80,7 +80,7 @@ const createRole = () => {
         {
             type: "input",
             name: "add_role",
-            message: "What role would you like to add?"
+            massage: "What role would you like to add?"
 
         }
 
@@ -97,7 +97,7 @@ const createEmployee = () => {
         {
             type: "input",
             name: "add_employee",
-            message: "What employee would you like to add?"
+            massage: "What employee would you like to add?"
 
         }
 
@@ -113,20 +113,14 @@ const updateRole = () => {
     inquirer.prompt([
         {
             type: "input",
-            name: 'employee_role',
-            message: "What employee number would you like to change?"
-
-        },
-        {
-            type: "input",
-            name: "update_role_id",
-            message: "What id number would you like to give?"
+            name: "update_role",
+            massage: "What role would you like to update?"
 
         }
 
     ]).then(ans => {
         console.log(ans)
-        queries.updateEmployeeRole(ans.employee_role, ans.update_role_id)
+        queries.updateEmployeeRole(ans)
             .then(() => console.log("successfully updated"))
             .then(() => startApp())
     })
@@ -137,13 +131,13 @@ const updateManager = () => {
         {
             type: "input",
             name: "manager_update",
-            message: "What manager would you like to update?"
+            massage: "What manager would you like to update?"
 
         }
 
     ]).then(ans => {
         console.log(ans)
-        queries.updateEmployeeManager(ans.manager_update)
+        queries.updateEmployeeManager(ans)
             .then(() => console.log("successfully updated"))
             .then(() => startApp())
     })

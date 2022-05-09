@@ -52,8 +52,8 @@ class DB {
         );
     }
 
-    updateEmployeeRole(role_id, id) {
-        return this.db.promise().query(`UPDATE employee SET role_id = '${role_id}' WHERE id =('${id}')`
+    updateEmployeeRole(role_id) {
+        return this.db.promise().query(`UPDATE employee (role_id) VALUES ('${role_id}')`
         );
 
     }
