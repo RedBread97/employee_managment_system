@@ -91,11 +91,21 @@ const createRole = () => {
             name: "add_role",
             massage: "What role would you like to add?"
 
+        },
+        {
+            type: "number",
+            name: "salary",
+            message: "What will the salary of the new role be?"
+        },
+        {
+            type: "number",
+            name: "dept",
+            message: "What department will this role be assigned to by id#?"
         }
 
     ]).then(ans => {
         console.log(ans)
-        queries.createRole(ans.add_role)
+        queries.addRole(ans.add_role, ans.salary, ans.dept)
             .then(() => console.log("successfully added"))
             .then(() => startApp())
     })
@@ -104,15 +114,29 @@ const createRole = () => {
 const createEmployee = () => {
     inquirer.prompt([
         {
-            type: "input",
-            name: "add_employee",
-            massage: "What employee would you like to add?"
-
+            type: 'input',
+            name: 'first',
+            message: 'What is the first name of the new employee?'
+        },
+        {
+            type: 'input',
+            name: 'last',
+            message: 'What is the last name of the new employee?'
+        },
+        {
+            type: 'number',
+            name: 'role_id',
+            message: 'What is the role id# of the new employee?'
+        },
+        {
+            type: 'input',
+            name: 'manager_id',
+            message: "What is the id# of the employee's manager?"
         }
 
     ]).then(ans => {
         console.log(ans)
-        queries.addEmployee(ans.add_employee)
+        queries.addEmployee(ans.first, ans.last, ans.role_id, ans.manager_id)
             .then(() => console.log("successfully added"))
             .then(() => startApp())
     })
