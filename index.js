@@ -3,12 +3,8 @@ const inquirer = require('inquirer');
 require('dotenv').config();
 const queryFunctions = require('./queryFunctions');
 const queries = require('./queryFunctions')
-const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee", "update role", "update manager", "quit"];
-init()
-function init() {
-    startApp();
-console.log('working')
-}
+const opt = ["view all departments", "view all roles", "view all employees", "add department", "add role", "add employee", "update role"];
+
 
 
 function startApp() {
@@ -24,13 +20,13 @@ function startApp() {
             console.log(ans);
             switch (ans.userview) {
                 case opt[0]:
-                   queries.allDepts();
+                   viewDepts();
                     break;
                 case opt[1]:
-                    queries.allRoles();
+                    viewRoles();
                     break;
                 case opt[2]:
-                    queries.allEmployees();
+                    viewEmployees();
                     break;
                 case opt[3]:
                     createDepartment();
@@ -56,7 +52,20 @@ function startApp() {
         })
 
 }
+const viewDepts = () => {
+queries.allDepts();
+startApp()
+};
 
+const viewRoles = () => {
+    queries.allRoles();
+    startApp()
+    };
+
+    const viewEmployees = () => {
+        queries.allEmployees();
+        startApp()
+        };
 
 const createDepartment = () => {
     inquirer.prompt([
@@ -149,8 +158,4 @@ function quit() {
 
 
 
-// init();
-
-
-
-
+startApp();
